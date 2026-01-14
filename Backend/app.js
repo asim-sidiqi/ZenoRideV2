@@ -12,15 +12,26 @@ dotenv.config();
 const connectToDb = require('./db/db')
 connectToDb();
 
-// const allowedOrigins = [
-//   'https://zeno-ride-vite.vercel.app',  // Replace this with your real frontend deployed link
-//   'http://localhost:5173'              // Keep for local testing
-// ];
+const allowedOrigins = [
+  'https://zenoride.vercel.app',
+  'http://localhost:5173'
+];
 
 app.use(cors({
-  origin: '*', 
-  credentials: true
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// VERY IMPORTANT (preflight fix)
+app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded( {extended:true} ) )
