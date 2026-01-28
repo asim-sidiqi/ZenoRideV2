@@ -9,7 +9,6 @@ const kafka = new Kafka({
   brokers: [process.env.KAFKA_BROKER],
 });
 
-
 const producer = kafka.producer();
 console.log('Kafka broker:', process.env.KAFKA_BROKER);
 
