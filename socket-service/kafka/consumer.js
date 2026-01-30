@@ -17,6 +17,7 @@ async function startKafkaConsumer() {
   await consumer.subscribe({ topic: 'ride.on_sight' });
 
   await consumer.run({
+    
     eachMessage: async ({ message }) => {
       const payload = JSON.parse(message.value.toString());
 
