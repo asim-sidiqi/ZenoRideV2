@@ -15,6 +15,7 @@ module.exports.RegisterCaptain = async (req, res, next) => {
     const isCaptainAlreadyExist = await captainModel.findOne({ email });
     
     if (isCaptainAlreadyExist) {
+        
         return res.status(400).json({ message: "Captain already exists" });
     }
 
