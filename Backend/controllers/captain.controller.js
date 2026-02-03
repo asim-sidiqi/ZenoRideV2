@@ -4,7 +4,9 @@ const { validationResult } = require('express-validator');
 const blackListTokenModel = require('../models/blacklistToken.model');
 
 module.exports.RegisterCaptain = async (req, res, next) => {
+    
     const error = validationResult(req);
+    
     if (!error.isEmpty()) {
         return res.status(400).json({ errors: error.array() });
     }
@@ -14,6 +16,7 @@ module.exports.RegisterCaptain = async (req, res, next) => {
     const isCaptainAlreadyExist = await captainModel.findOne({ email });
     
     if (isCaptainAlreadyExist) {
+        
         return res.status(400).json({ message: "Captain already exists" });
     }
 
