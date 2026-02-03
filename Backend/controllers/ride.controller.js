@@ -105,7 +105,7 @@ module.exports.createOnSightRide = async (req, res) => {
 
     const captain = await captainModel.findOne({
       'vehicle.plate': plateNumber,
-      isOnline: true
+      // isOnline: true
     });
 
     if (captain) {
