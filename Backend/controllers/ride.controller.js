@@ -39,20 +39,20 @@ module.exports.createRide = async (req, res) => {
           $maxDistance: 4000
         }
       },
-      'vehicle.vehicleType': vehicleType
+      'vehicle.vehicleType': vehicleType,
+      // isOnline: true
     });
 
     ride.otp = '';
+
     const rideWithUser = await rideModel
       .findById(ride._id)
       .populate('user');
 
     for (const captain of nearbyCaptains) {
-      if (!captain.socketId) continue;
-
       await publishEvent(TOPICS.RIDE_CREATED, {
-        rideId: ride._id,
-        socketId: captain.socketId,
+        rideId: ride._id.toString(),
+        captainId: captain._id.toString(),
         event: 'new-ride',
         data: rideWithUser
       });
@@ -68,20 +68,20 @@ module.exports.createRide = async (req, res) => {
 /* ---------------- GET FARE ---------------- */
 
 module.exports.getFare = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
 
-    const { pickup, destination } = req.query;
+  const { pickup, destination } = req.query;
 
-    try {
-        const fare = await rideService.getFare(pickup, destination);
-        return res.status(200).json(fare);
-    } catch (err) {
-        console.error('Fare calculation failed:', err);
-        return res.status(500).json({ message: err.message });
-    }
+  try {
+    const fare = await rideService.getFare(pickup, destination);
+    return res.status(200).json(fare);
+  } catch (err) {
+    console.error('Fare calculation failed:', err);
+    return res.status(500).json({ message: err.message });
+  }
 };
 
 /* ---------------- CREATE ON-SIGHT RIDE ---------------- */
@@ -103,18 +103,19 @@ module.exports.createOnSightRide = async (req, res) => {
       plateNumber
     });
 
-    const captain = await captainModel
-      .findOne({ 'vehicle.plate': plateNumber })
-      .select('socketId');
+    const captain = await captainModel.findOne({
+      'vehicle.plate': plateNumber,
+      isOnline: true
+    });
 
-    if (captain?.socketId) {
+    if (captain) {
       const rideWithUser = await rideModel
         .findById(ride._id)
         .populate('user');
 
       await publishEvent(TOPICS.RIDE_ON_SIGHT, {
-        rideId: ride._id,
-        socketId: captain.socketId,
+        rideId: ride._id.toString(),
+        captainId: captain._id.toString(),
         event: 'ride-on-sight',
         data: rideWithUser
       });
@@ -142,8 +143,8 @@ module.exports.confirmRide = async (req, res) => {
     });
 
     await publishEvent(TOPICS.RIDE_CONFIRMED, {
-      rideId: ride._id,
-      socketId: ride.user.socketId,
+      rideId: ride._id.toString(),
+      userId: ride.user._id.toString(),
       event: 'ride-confirmed',
       data: ride
     });
@@ -171,8 +172,8 @@ module.exports.startRide = async (req, res) => {
     });
 
     await publishEvent(TOPICS.RIDE_STARTED, {
-      rideId: ride._id,
-      socketId: ride.user.socketId,
+      rideId: ride._id.toString(),
+      userId: ride.user._id.toString(),
       event: 'ride-started',
       data: ride
     });
@@ -198,8 +199,8 @@ module.exports.endRide = async (req, res) => {
     });
 
     await publishEvent(TOPICS.RIDE_ENDED, {
-      rideId: ride._id,
-      socketId: ride.user.socketId,
+      rideId: ride._id.toString(),
+      userId: ride.user._id.toString(),
       event: 'ride-ended',
       data: ride
     });

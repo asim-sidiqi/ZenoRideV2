@@ -1,5 +1,5 @@
 const { Kafka } = require('kafkajs');
-const { sendMessageToSocketId } = require('../socket');
+const { emitToUser } = require('../socket');
 
 const kafka = new Kafka({
   clientId: 'socket-service',
@@ -20,10 +20,14 @@ async function startKafkaConsumer() {
     eachMessage: async ({ message }) => {
       const payload = JSON.parse(message.value.toString());
 
-      sendMessageToSocketId(payload.socketId, {
-        event: payload.event,
-        data: payload.data
-      });
+      const targetId = payload.userId || payload.captainId;
+
+      if (!targetId) {
+        console.warn('No targetId in payload', payload);
+        return;
+      }
+
+      emitToUser(targetId, payload.event, payload.data);
     }
   });
 

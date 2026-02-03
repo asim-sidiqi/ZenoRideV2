@@ -26,8 +26,9 @@ const captainSchema = new mongoose.Schema({
         required: true,
         select: false,
     },
-    socketId: {
-        type: String,
+    isOnline: {
+        type: Boolean,
+        default: false
     },
 
     status: {
