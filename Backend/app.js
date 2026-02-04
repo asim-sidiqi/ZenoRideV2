@@ -23,7 +23,7 @@ const connectToDb = require('./db/db')
 connectToDb();
 
 const allowedOrigins = [
-  'https://zenoride.vercel.app',
+  'https://zeno-ride-v2.vercel.app',
   'http://localhost:5173'
 ];
 

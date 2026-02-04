@@ -15,7 +15,7 @@ async function initializeSocket(server) {
   io = new Server(server, {
     cors: {
       origin: [
-        'https://zenoride.vercel.app',
+        'https://zeno-ride-v2.vercel.app',
         'http://localhost:5173'
       ],
       methods: ['GET', 'POST'],
