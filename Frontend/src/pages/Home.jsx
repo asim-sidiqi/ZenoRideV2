@@ -46,8 +46,16 @@ const Home = () => {
     const { user } = useContext(UserDataContext)
 
     useEffect(() => {
+    if (!localStorage.getItem('token')) {
+        navigate('/login')
+    }
+    }, [navigate])
+
+    useEffect(() => {
+    if (user?._id) {
         socket.emit("join", { userType: "user", userId: user._id })
-    }, [ user ])
+    }
+    }, [user, socket])
 
     useEffect(() => {
         socket.on('ride-confirmed', ride => {
