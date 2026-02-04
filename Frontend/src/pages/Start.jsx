@@ -4,12 +4,38 @@ import logo2 from '../assets/logo2.png'
 
 const Start = () => {
   return (
-    <div>
-      <div className='bg-cover bg-center bg-[url(https://images.unsplash.com/photo-1619059558110-c45be64b73ae?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] h-screen pt-8 flex justify-between flex-col w-full'>
-        <img className='w-28 ml-8' src={logo2} alt="" />
-        <div className='bg-white pb-8 py-4 px-4'>
-          <h2 className='text-[30px] font-semibold'>Get Started with Zeno</h2>
-          <Link to='/login' className='flex items-center justify-center w-full bg-black text-white py-3 rounded-lg mt-5'>Continue</Link>
+    <div className='h-screen w-full overflow-hidden'>
+      {/* Mobile background image */}
+      <div className='absolute inset-0 bg-cover bg-center bg-[url(https://images.unsplash.com/photo-1619059558110-c45be64b73ae?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] md:hidden' />
+      
+      {/* Desktop background image */}
+      <div className='absolute inset-0 bg-cover bg-center bg-[url(https://images.unsplash.com/photo-1449824913935-59a10b8d2000?q=80&w=2670&auto=format&fit=crop)] hidden md:block' />
+      
+      {/* Overlay for better text readability */}
+      <div className='absolute inset-0 bg-black/20' />
+      
+      {/* Content */}
+      <div className='relative h-full flex flex-col justify-between'>
+        {/* Logo */}
+        <div className='pt-8 px-8'>
+          <img className='w-28 drop-shadow-lg' src={logo2} alt="Zeno Logo" />
+        </div>
+        
+        {/* Bottom card */}
+        <div className='text-center bg-white rounded-t-3xl shadow-2xl p-8 md:mx-auto md:mb-12 md:rounded-3xl md:max-w-md md:w-full'>
+          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-2'>
+            Get Started with Zeno
+          </h2>
+          <p className='text-gray-600 mb-6'>
+            Your journey begins here
+          </p>
+          <Link 
+            to='/login' 
+            className='flex items-center justify-center w-full bg-black text-white py-3.5 rounded-xl font-medium hover:bg-gray-800 transition-colors duration-200 shadow-lg'
+          >
+            Continue
+          </Link>
+          
         </div>
       </div>
     </div>

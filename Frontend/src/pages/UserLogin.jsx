@@ -35,49 +35,112 @@ const UserLogin = () => {
   }
 
   return (
-    <div className='p-7 h-screen flex flex-col justify-between'>
-      <div>
-        <img className='w-24 mb-10' src={logo} alt="" />
-
-        <form onSubmit={(e) => {
-          submitHandler(e)
-        }}>
-          <h3 className='text-lg font-medium mb-2'>What's your email</h3>
-          <input
-            required
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-            }}
-            className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-            type="email"
-            placeholder='email@example.com'
-          />
-
-          <h3 className='text-lg font-medium mb-2'>Enter Password</h3>
-
-          <input
-            className='bg-[#eeeeee] mb-7 rounded-lg px-4 py-2 border w-full text-lg placeholder:text-base'
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-            }}
-            required type="password"
-            placeholder='password'
-          />
-
-          <button
-            className='bg-[#111] text-white font-semibold mb-3 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-          >Login</button>
-
-        </form>
-        <p className='text-center'>New here? <Link to='/signup' className='text-blue-600'>Create new Account</Link></p>
+    <div className='min-h-screen bg-white'>
+      {/* Logo in corner */}
+      <div className='absolute top-6 left-6 md:top-8 md:left-8'>
+        <img className='w-16 md:w-20' src={logo} alt="" />
       </div>
-      <div>
-        <Link
-          to='/captain-login'
-          className='bg-[#10b461] flex items-center justify-center text-white font-semibold mb-5 rounded-lg px-4 py-2 w-full text-lg placeholder:text-base'
-        >Sign in as Captain</Link>
+
+      {/* Mobile Layout */}
+      <div className='md:hidden min-h-screen flex flex-col justify-between p-6 pt-24'>
+        <div>
+          <form onSubmit={(e) => {
+            submitHandler(e)
+          }} className='space-y-5'>
+            <div>
+              <h3 className='text-lg font-semibold mb-2 text-gray-900'>What's your email</h3>
+              <input
+                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
+                className='bg-gray-100 rounded-xl px-4 py-3 border border-gray-200 w-full text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all'
+                type="email"
+                placeholder='email@example.com'
+              />
+            </div>
+
+            <div>
+              <h3 className='text-lg font-semibold mb-2 text-gray-900'>Enter Password</h3>
+              <input
+                className='bg-gray-100 rounded-xl px-4 py-3 border border-gray-200 w-full text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all'
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
+                required 
+                type="password"
+                placeholder='password'
+              />
+            </div>
+
+            <button
+              className='bg-black text-white font-semibold rounded-xl px-4 py-3 w-full text-base hover:bg-gray-800 transition-colors mt-2'
+            >Login</button>
+
+            <p className='text-center text-sm text-gray-600 pt-1'>New here? <Link to='/signup' className='text-blue-600 font-medium hover:underline'>Create new Account</Link></p>
+          </form>
+        </div>
+        
+        <div className='pb-6'>
+          <Link
+            to='/captain-login'
+            className='bg-emerald-500 flex items-center justify-center text-white font-semibold rounded-xl px-4 py-3 w-full text-base hover:bg-emerald-600 transition-colors'
+          >Sign in as Captain</Link>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className='hidden md:flex min-h-screen items-center justify-center p-8'>
+        <div className='w-full max-w-md'>
+          <div className='bg-white rounded-2xl border border-gray-200 shadow-lg p-10'>
+            <form onSubmit={(e) => {
+              submitHandler(e)
+            }} className='space-y-6'>
+              <div>
+                <h3 className='text-base font-semibold mb-2 text-gray-900'>What's your email</h3>
+                <input
+                  required
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                  }}
+                  className='bg-gray-50 rounded-xl px-4 py-3 border border-gray-200 w-full text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all'
+                  type="email"
+                  placeholder='email@example.com'
+                />
+              </div>
+
+              <div>
+                <h3 className='text-base font-semibold mb-2 text-gray-900'>Enter Password</h3>
+                <input
+                  className='bg-gray-50 rounded-xl px-4 py-3 border border-gray-200 w-full text-base placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent transition-all'
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                  }}
+                  required 
+                  type="password"
+                  placeholder='password'
+                />
+              </div>
+
+              <button
+                className='bg-black text-white font-semibold rounded-xl px-4 py-3.5 w-full text-base hover:bg-gray-800 transition-colors mt-2'
+              >Login</button>
+
+              <p className='text-center text-sm text-gray-600 pt-2'>New here? <Link to='/signup' className='text-blue-600 font-medium hover:underline'>Create new Account</Link></p>
+            </form>
+            
+            <div className='pt-6 mt-6 border-t border-gray-200'>
+              <Link
+                to='/captain-login'
+                className='bg-emerald-500 flex items-center justify-center text-white font-semibold rounded-xl px-4 py-3 w-full text-base hover:bg-emerald-600 transition-colors'
+              >Sign in as Captain</Link>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )
