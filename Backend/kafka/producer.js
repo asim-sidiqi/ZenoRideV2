@@ -7,6 +7,12 @@ if (!process.env.KAFKA_BROKER) {
 const kafka = new Kafka({
   clientId: 'backend-service',
   brokers: [process.env.KAFKA_BROKER],
+  ssl: true,
+  sasl: {
+    mechanism: 'plain',
+    username: process.env.KAFKA_API_KEY,
+    password: process.env.KAFKA_API_SECRET,
+  },
 });
 
 const producer = kafka.producer();

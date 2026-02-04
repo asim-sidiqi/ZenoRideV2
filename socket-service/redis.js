@@ -1,7 +1,11 @@
 const { createClient } = require('redis');
 
 const pubClient = createClient({
-  url: process.env.REDIS_URL
+  url: process.env.REDIS_URL,
+  socket: {
+    tls: true,
+    rejectUnauthorized: false
+  }
 });
 
 const subClient = pubClient.duplicate();
