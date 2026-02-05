@@ -4,7 +4,7 @@ import logo2 from '../assets/logo2.png'
 
 const Start = () => {
   return (
-    <div className='h-screen w-full overflow-hidden'>
+    <div className='min-h-screen h-[100dvh] w-full overflow-hidden'>
       {/* Mobile background image */}
       <div className='absolute inset-0 bg-cover bg-center bg-[url(https://images.unsplash.com/photo-1619059558110-c45be64b73ae?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] md:hidden' />
       
@@ -31,7 +31,7 @@ const Start = () => {
           </p>
           <Link 
             to='/login' 
-            className='flex items-center justify-center w-full bg-black text-white py-3.5 rounded-xl font-medium hover:bg-gray-800 transition-colors duration-200 shadow-lg'
+            className='flex items-center justify-center w-full border-2 bg-black text-white py-3.5 rounded-xl font-medium hover:bg-white hover:text-black hover:border-black hover:border-2 transition-colors duration-200 shadow-lg'
           >
             Continue
           </Link>
