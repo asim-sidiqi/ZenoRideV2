@@ -26,7 +26,7 @@ ZenoRideV2/
 cd Backend
 npm install
 # Configure .env file with your database and service credentials
-npm start
+node server.js
 ```
 
 #### 2. Frontend Setup
@@ -42,7 +42,7 @@ npm run dev
 cd socket-service
 npm install
 # Configure .env file with Redis, Kafka, and database credentials
-npm start
+node index.js
 ```
 
 ## 🏗️ Architecture Overview
