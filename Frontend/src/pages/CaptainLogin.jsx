@@ -46,7 +46,7 @@ const Captainlogin = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className='md:hidden min-h-screen flex flex-col justify-between p-6 pt-24'>
+      <div className='md:hidden h-[100dvh] flex flex-col p-6 pt-24'>
         <div>
           <form onSubmit={(e) => {
             submitHandler(e)
@@ -87,7 +87,7 @@ const Captainlogin = () => {
           </form>
         </div>
         
-        <div className='pb-6'>
+        <div className='mt-auto pb-6 pb-[env(safe-area-inset-bottom)]'>
           <Link
             to='/login'
             className='bg-orange-600 flex items-center justify-center text-white font-semibold rounded-xl px-4 py-3 w-full text-base hover:bg-orange-700 transition-colors'

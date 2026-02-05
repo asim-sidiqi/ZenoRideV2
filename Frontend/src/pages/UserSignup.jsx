@@ -55,7 +55,7 @@ const UserSignup = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className='md:hidden min-h-screen flex flex-col justify-between p-6 pt-24'>
+      <div className='md:hidden h-[100dvh] flex flex-col p-6 pt-24'>
         <div>
           <form onSubmit={(e) => {
             submitHandler(e)
@@ -122,7 +122,7 @@ const UserSignup = () => {
           </form>
         </div>
         
-        <div className='pb-6'>
+        <div className='mt-auto pb-6 pb-[env(safe-area-inset-bottom)]'>
           <p className='text-xs leading-tight text-gray-500'>This site is protected by reCAPTCHA and the <span className='underline'>Google Privacy Policy</span> and <span className='underline'>Terms of Service apply</span>.</p>
         </div>
       </div>
