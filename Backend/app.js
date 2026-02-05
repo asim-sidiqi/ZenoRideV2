@@ -24,6 +24,7 @@ connectToDb();
 
 const allowedOrigins = [
   'https://zeno-ride-v2.vercel.app',
+  'https://www.zenoride.in',
   'http://localhost:5173'
 ];
 
