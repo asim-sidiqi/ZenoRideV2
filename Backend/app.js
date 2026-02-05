@@ -54,6 +54,8 @@ app.get('/',(req,res)=>{
     res.send('hi');
 });
 
+app.get('/health', (_, res) => res.send('OK'));
+
 app.use('/users', userRoutes)
 app.use('/captains', captainRoutes)
 app.use('/maps', mapsRoutes)
