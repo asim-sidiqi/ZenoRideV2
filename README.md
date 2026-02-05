@@ -10,6 +10,40 @@ ZenoRideV2/
 ├── Frontend/               # React + Vite frontend
 └── socket-service/         # WebSocket server for real-time features
 ```
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
+- MongoDB instance (for Backend)
+- Redis instance (for Socket Service)
+- Kafka (for event streaming)
+
+### Installation
+
+#### 1. Backend Setup
+```bash
+cd Backend
+npm install
+# Configure .env file with your database and service credentials
+npm start
+```
+
+#### 2. Frontend Setup
+```bash
+cd Frontend
+npm install
+# Configure .env file with API endpoints
+npm run dev
+```
+
+#### 3. Socket Service Setup
+```bash
+cd socket-service
+npm install
+# Configure .env file with Redis, Kafka, and database credentials
+npm start
+```
 
 ## 🏗️ Architecture Overview
 
@@ -55,41 +89,6 @@ Real-time communication service featuring:
 - `redis.js` - Redis connection and operations
 - `kafka/` - Kafka consumer for events
 - `models/` - Socket models for tracking connections
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v14 or higher)
-- npm or yarn
-- MongoDB instance (for Backend)
-- Redis instance (for Socket Service)
-- Kafka (for event streaming)
-
-### Installation
-
-#### 1. Backend Setup
-```bash
-cd Backend
-npm install
-# Configure .env file with your database and service credentials
-npm start
-```
-
-#### 2. Frontend Setup
-```bash
-cd Frontend
-npm install
-# Configure .env file with API endpoints
-npm run dev
-```
-
-#### 3. Socket Service Setup
-```bash
-cd socket-service
-npm install
-# Configure .env file with Redis, Kafka, and database credentials
-npm start
-```
 
 ## 🔧 Environment Configuration
 
